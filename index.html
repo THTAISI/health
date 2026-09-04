@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Health">
+<meta name="apple-mobile-web-app-title" content="TH Health">
 <meta name="theme-color" content="#2F5D50">
-<title>Thijs · Health</title>
+<title>TH Health</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,8 +26,9 @@
   .appbar{background:var(--green);color:#fff;padding:calc(env(safe-area-inset-top) + 14px) 0 14px}
   .appbar .wrap{display:flex;align-items:center;gap:12px}
   .appbar .brand{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:#fff;flex:1}
-  .seg{display:flex;background:rgba(255,255,255,.14);border-radius:11px;padding:3px}
-  .seg button{background:none;border:none;color:rgba(255,255,255,.8);font-family:inherit;font-size:14px;font-weight:700;padding:8px 16px;border-radius:9px;cursor:pointer;transition:.15s}
+  .seg{display:flex;background:rgba(255,255,255,.14);border-radius:11px;padding:3px;overflow-x:auto;scrollbar-width:none}
+  .seg::-webkit-scrollbar{display:none}
+  .seg button{background:none;border:none;color:rgba(255,255,255,.8);font-family:inherit;font-size:13.5px;font-weight:700;padding:8px 14px;border-radius:9px;cursor:pointer;transition:.15s;white-space:nowrap}
   .seg button.active{background:#fff;color:var(--green)}
   .view{display:none}
   .view.active{display:block}
@@ -129,6 +130,58 @@
   .warn{font-size:12px;color:var(--red);margin-top:6px;font-weight:600}
   .caution{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--red);border-radius:0 12px 12px 0;padding:13px 15px;margin-top:6px;font-size:12.5px;color:var(--soft)}
   .caution b{color:var(--ink)}
+  /* food + body */
+  .totbar{position:sticky;top:0;z-index:20;background:rgba(244,241,234,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:16px}
+  .macros{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  @media(max-width:560px){.macros{grid-template-columns:repeat(3,1fr)}}
+  .macro{text-align:center}
+  .macro .mv{font-family:'Fraunces',serif;font-size:17px;font-weight:600;line-height:1}
+  .macro .mv small{font-size:11px;color:var(--soft);font-weight:400;font-family:'Hanken Grotesk'}
+  .macro .ml{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);font-weight:700;margin-top:2px}
+  .mbar{height:5px;border-radius:5px;background:var(--line);margin-top:5px;overflow:hidden}
+  .mbar i{display:block;height:100%;border-radius:5px;background:var(--green);transition:width .3s}
+  .mbar i.over{background:var(--red)}
+  .mbar i.hit{background:var(--good)}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+  .card h3{font-size:18px;margin-bottom:4px}
+  .card .csub{font-size:12.5px;color:var(--soft);margin-bottom:12px}
+  .frm{display:flex;gap:7px;flex-wrap:wrap;align-items:flex-end}
+  .fld{flex:1;min-width:60px}
+  .fld.wide{flex:2 1 120px}
+  .fld label{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);font-weight:700;display:block;margin-bottom:4px}
+  .fld input,.fld select{width:100%;border:1.5px solid var(--line);border-radius:9px;padding:10px;font-family:inherit;font-size:16px;font-weight:600;background:#fff;color:var(--ink);outline:none}
+  .fld input:focus,.fld select:focus{border-color:var(--green)}
+  .addbtn{background:var(--green);color:#fff;border:none;border-radius:9px;padding:11px 18px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;flex:0 0 auto}
+  .mealgrp{margin-top:14px}
+  .mealgrp h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);font-weight:700;margin-bottom:6px}
+  .fitem{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .fitem:last-child{border-bottom:none}
+  .fitem .fn{flex:1;font-weight:600}
+  .fitem .fm{font-size:12px;color:var(--soft)}
+  .fitem .fdel{background:none;border:none;color:var(--soft);font-size:17px;cursor:pointer;padding:2px 6px;border-radius:6px}
+  .fitem .fdel:hover{color:var(--red);background:rgba(180,69,47,.08)}
+  .goalrow{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .goalrow:last-child{border-bottom:none}
+  .goalrow .gi{flex:1}
+  .goalrow .gname{font-weight:600;font-size:14.5px}
+  .goalrow .gtarget{font-size:12px;color:var(--soft)}
+  .goalrow .gnow{font-family:'Fraunces',serif;font-size:20px;font-weight:600;text-align:right}
+  .goalrow .gnow small{font-size:12px;color:var(--soft);font-family:'Hanken Grotesk';font-weight:400}
+  .recent{font-size:12.5px;color:var(--soft);margin-top:10px;line-height:1.8}
+  .recent b{color:var(--ink)}
+  .spark{width:100%;height:120px;margin-top:6px}
+  .spark line.grid{stroke:var(--line);stroke-width:1}
+  .spark polyline{fill:none;stroke:var(--green);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+  .spark circle{fill:var(--green)}
+  .spark .goal{stroke:var(--clay);stroke-width:1.5;stroke-dasharray:4 4}
+  .spark text{fill:var(--soft);font-size:10px;font-family:'Hanken Grotesk'}
+  .tbars{display:flex;align-items:flex-end;gap:5px;height:110px;margin-top:8px}
+  .tbar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px}
+  .tbar i{width:100%;border-radius:4px 4px 0 0;background:var(--green);min-height:2px}
+  .tbar i.miss{background:var(--line)}
+  .tbar i.hit{background:var(--good)}
+  .tbar span{font-size:9px;color:var(--soft)}
+  .empty-note{font-size:13px;color:var(--soft);font-style:italic;padding:16px 0;text-align:center}
   .foot{text-align:center;color:var(--soft);font-size:11.5px;padding:22px 0 0;font-style:italic}
 </style>
 </head>
@@ -136,16 +189,32 @@
 
 <div class="appbar">
   <div class="wrap">
-    <span class="brand">Health</span>
-    <div class="seg">
-      <button id="seg-w" class="active" onclick="showView('workout')">Workout</button>
-      <button id="seg-s" onclick="showView('supp')">Supplements</button>
+    <span class="brand">TH HEALTH</span>
+    <div class="seg" id="seg">
+      <button data-v="today" class="active" onclick="showView('today')">Today</button>
+      <button data-v="workout" onclick="showView('workout')">Workout</button>
+      <button data-v="food" onclick="showView('food')">Food</button>
+      <button data-v="body" onclick="showView('body')">Body</button>
+      <button data-v="trends" onclick="showView('trends')">Trends</button>
+      <button data-v="supp" onclick="showView('supp')">Supps</button>
     </div>
   </div>
 </div>
 
+<!-- TODAY VIEW -->
+<div class="view active" id="view-today">
+  <main><div class="wrap" style="padding-top:8px">
+    <div class="card" style="background:linear-gradient(135deg,rgba(47,93,80,.08),rgba(47,93,80,.01))">
+      <h3 id="today-date" style="font-size:20px"></h3>
+      <div class="csub" id="today-sub" style="margin-bottom:0"></div>
+    </div>
+    <div id="today-cards"></div>
+    <div class="foot">Your day at a glance. Tap any tab above to log detail.</div>
+  </div></main>
+</div>
+
 <!-- WORKOUT VIEW -->
-<div class="view active" id="view-workout">
+<div class="view" id="view-workout">
   <nav><div class="wrap" id="w-tabs"></div></nav>
   <main><div class="wrap">
     <div class="legend">
@@ -177,6 +246,127 @@
   </div></main>
 </div>
 
+<!-- FOOD VIEW -->
+<div class="view" id="view-food">
+  <div class="totbar"><div class="wrap"><div class="macros" id="food-totals"></div></div></div>
+  <main><div class="wrap">
+    <div class="card">
+      <h3>Quick daily total</h3>
+      <div class="csub">Busy day? Skip per-item logging: enter your whole day's numbers from a barcode app (MacroFactor, MyFitnessPal). This replaces today's food list.</div>
+      <div class="frm">
+        <div class="fld"><label>kcal</label><input type="number" inputmode="numeric" id="dt-kcal" placeholder="kcal"></div>
+        <div class="fld"><label>Protein</label><input type="number" inputmode="decimal" id="dt-p" placeholder="g"></div>
+        <div class="fld"><label>Carbs</label><input type="number" inputmode="decimal" id="dt-c" placeholder="g"></div>
+        <div class="fld"><label>Fat</label><input type="number" inputmode="decimal" id="dt-f" placeholder="g"></div>
+        <div class="fld"><label>Fibre</label><input type="number" inputmode="decimal" id="dt-fib" placeholder="g"></div>
+        <button class="addbtn" id="dt-add">Set day</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Add food</h3>
+      <div class="csub">Enter macros per item. Calories fill in automatically. Fibre is optional but tracked (your ApoB lever). Tick "save as favourite" to reuse it later.</div>
+      <div class="frm">
+        <div class="fld wide"><label>Food</label><input type="text" id="f-name" placeholder="e.g. chicken bowl"></div>
+        <div class="fld"><label>Meal</label><select id="f-meal"><option>Breakfast</option><option>Lunch</option><option>Snack</option><option>Dinner</option></select></div>
+      </div>
+      <div class="frm" style="margin-top:8px">
+        <div class="fld"><label>Protein g</label><input type="number" inputmode="decimal" id="f-p" placeholder="g"></div>
+        <div class="fld"><label>Carbs g</label><input type="number" inputmode="decimal" id="f-c" placeholder="g"></div>
+        <div class="fld"><label>Fat g</label><input type="number" inputmode="decimal" id="f-f" placeholder="g"></div>
+        <div class="fld"><label>Fibre g</label><input type="number" inputmode="decimal" id="f-fib" placeholder="opt"></div>
+      </div>
+      <label style="display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--soft);font-weight:600;cursor:pointer"><input type="checkbox" id="f-fav" style="width:18px;height:18px"> Save as favourite</label>
+      <button class="addbtn" id="f-add" style="width:100%;margin-top:10px">Add to today</button>
+    </div>
+    <div class="card">
+      <h3>Favourites</h3>
+      <div class="csub">Your saved meals. Tap to add to today in one go.</div>
+      <div id="fav-list"></div>
+    </div>
+    <div class="card">
+      <h3>Today's food</h3>
+      <div class="csub" id="food-date"></div>
+      <div id="food-list"></div>
+    </div>
+    <div class="foot">Targets: 2,000 kcal · 140g protein (cap) · 225g carbs · 60g fat · 35g fibre. Not medical advice.</div>
+  </div></main>
+</div>
+
+<!-- BODY VIEW -->
+<div class="view" id="view-body">
+  <main><div class="wrap" style="padding-top:6px">
+    <div class="card">
+      <h3>Today vs goals</h3>
+      <div class="csub">Pulled from your logs across the app.</div>
+      <div id="goals-list"></div>
+    </div>
+    <div class="card">
+      <h3>Weight</h3>
+      <div class="csub">Log daily, same time (morning). Trend matters, not the daily number.</div>
+      <div class="frm">
+        <div class="fld wide"><label>Weight (kg) from Hume</label><input type="number" inputmode="decimal" id="wt-in" placeholder="kg"></div>
+        <button class="addbtn" id="wt-add">Log</button>
+      </div>
+      <div id="wt-latest" class="recent"></div>
+    </div>
+    <div class="card">
+      <h3>Steps</h3>
+      <div class="csub">Goal 8,000/day. Read it off Hume and log it.</div>
+      <div class="frm">
+        <div class="fld wide"><label>Steps today from Hume</label><input type="number" inputmode="numeric" id="st-in" placeholder="steps"></div>
+        <button class="addbtn" id="st-add">Log</button>
+      </div>
+      <div class="mbar" style="margin-top:12px"><i id="st-bar" style="width:0%"></i></div>
+      <div id="st-latest" class="recent"></div>
+    </div>
+    <div class="card">
+      <h3>Measurements</h3>
+      <div class="csub">Every 2 weeks, relaxed, same spots. Waist at the navel. Arms flexed. Hips at the widest.</div>
+      <div class="frm">
+        <div class="fld"><label>Waist cm</label><input type="number" inputmode="decimal" id="ms-waist" placeholder="cm"></div>
+        <div class="fld"><label>Arm cm</label><input type="number" inputmode="decimal" id="ms-arm" placeholder="cm"></div>
+        <div class="fld"><label>Hips cm</label><input type="number" inputmode="decimal" id="ms-hips" placeholder="cm"></div>
+        <button class="addbtn" id="ms-add">Log</button>
+      </div>
+      <div id="ms-latest" class="recent"></div>
+    </div>
+    <div class="card">
+      <h3>Progress photos</h3>
+      <div class="csub">Photos are too big to store here safely. Keep them in a dedicated album in your phone's Photos app (free, backed up). Take one every 2 weeks, same light, same pose, front + side.</div>
+      <button class="addbtn" id="ph-add" style="width:100%">I took today's photo ✓</button>
+      <div id="ph-latest" class="recent"></div>
+    </div>
+    <div class="foot">Weight and steps are typed from Hume (auto-sync isn't possible on a hosted page). Not medical advice.</div>
+  </div></main>
+</div>
+
+<!-- TRENDS VIEW -->
+<div class="view" id="view-trends">
+  <main><div class="wrap" style="padding-top:8px">
+    <div class="card">
+      <h3>Weight</h3>
+      <div class="csub" id="tr-weight-sub">Toward ~75 kg. Log in the Body tab to build the line.</div>
+      <div id="tr-weight"></div>
+    </div>
+    <div class="card">
+      <h3>Waist</h3>
+      <div class="csub">Your key fat-loss marker. Measure every 2 weeks in the Body tab.</div>
+      <div id="tr-waist"></div>
+    </div>
+    <div class="card">
+      <h3>Protein hit-rate</h3>
+      <div class="csub">Days you hit ≥130g protein, last 14 logged days.</div>
+      <div id="tr-protein"></div>
+    </div>
+    <div class="card">
+      <h3>Steps</h3>
+      <div class="csub">Last 14 logged days vs your 8,000 goal.</div>
+      <div id="tr-steps"></div>
+    </div>
+    <div class="foot">Trends need a few data points. Keep logging and these fill in.</div>
+  </div></main>
+</div>
+
 <script>
 // ---------- storage (localStorage: persists on this phone/browser) ----------
 const store={ get(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}},
@@ -184,11 +374,15 @@ const store={ get(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):
   del(k){try{localStorage.removeItem(k);}catch(e){}} };
 
 function showView(v){
-  document.getElementById("view-workout").classList.toggle("active", v==="workout");
-  document.getElementById("view-supp").classList.toggle("active", v==="supp");
-  document.getElementById("seg-w").classList.toggle("active", v==="workout");
-  document.getElementById("seg-s").classList.toggle("active", v==="supp");
+  ["today","workout","food","body","trends","supp"].forEach(x=>{
+    document.getElementById("view-"+x).classList.toggle("active", x===v);
+  });
+  document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("active", b.dataset.v===v));
   store.set("thijs-last-view", v);
+  if(v==="today"){ todayRender(); }
+  if(v==="food"){ foodRender(); }
+  if(v==="body"){ bodyRender(); }
+  if(v==="trends"){ trendsRender(); }
   window.scrollTo({top:0});
 }
 
@@ -355,13 +549,12 @@ const BLOCKS=[
   {id:"omega3",n:"Omega-3",amt:"2-3 softgels",form:"pill",prod:"Thorne Super EPA",why:"ApoB + triglyceride lever. 1 gelcap = 425 EPA + 270 DHA."},
   {id:"zinc",n:"Zinc",amt:"1 capsule",form:"pill",prod:"Thorne Zinc Bisglycinate 30mg",why:"Testosterone, immune, mineral balance. With food."},
   {id:"creatine",n:"Creatine",amt:"1 scoop (5g)",form:"powder",prod:"Thorne Creatine (monohydrate)",why:"Best-evidenced supplement for strength + lean muscle. Daily, incl. rest days. Drink your water."},
-  {id:"psyllium",n:"Fibre / Psyllium",amt:"1 scoop",form:"powder",prod:"Thorne FiberMend (or plain psyllium)",why:"ApoB + glucose control, satiety.",warn:"Keep ~2 hours from other supplements and meds."},
-  {id:"copper",n:"Copper",amt:"1 capsule · 3×/week",form:"pill",prod:"Thorne Copper Bisglycinate",why:"Balances the zinc so it doesn't deplete copper.",opt:true},
+  {id:"psyllium",n:"Fibre (FiberMend)",amt:"1 scoop",form:"powder",prod:"Thorne FiberMend",why:"Take ~15 min before dinner: stir into a full glass of water, drink immediately, then follow with more water through the meal. Blunts the meal's glucose + ApoB. FiberMend is a fibre blend (mixes clean, won't gel) — not in overnight oats. Plain psyllium has a slightly stronger ApoB effect if you switch later.",warn:"Keep ~2 hours from other supplements and meds."},
   {id:"boron",n:"Boron",amt:"source separately",form:"pill",prod:"No Thorne standalone",why:"Report suggested it for free testosterone. Get elsewhere or skip and ask your doctor.",opt:true},
  ]},
  {id:"train",title:"Around training",when:"as needed",color:"#C66B3D",items:[
   {id:"protein",n:"Protein",amt:"1 scoop (~25g)",form:"powder",prod:"Thorne Whey or Plant Protein",why:"Only if short of your 140g protein target.",opt:true},
-  {id:"electrolytes",n:"Electrolytes",amt:"1 scoop",form:"powder",prod:"Thorne Catalyte",why:"Training / sweaty days. Hydration, helps uric acid.",opt:true},
+  {id:"electrolytes",n:"Electrolytes",amt:"1 scoop",form:"powder",prod:"Thorne Catalyte",why:"DURING (long/sweaty sessions) and AFTER to replace losses. Not needed before, you start hydrated. Hot Zone 2 or hard spin: during + after.",opt:true},
  ]},
  {id:"pm",title:"Evening",when:"1-2 h before bed",color:"#23463C",items:[
   {id:"mag_pm",n:"Magnesium (PM)",amt:"3 capsules (~360mg)",form:"pill",prod:"Thorne Magnesium Glycinate (120mg/cap)",why:"Dose 2 of 2. Sleep + nervous system downregulation."},
@@ -396,10 +589,272 @@ function sRender(){ const doneReq=REQUIRED.filter(x=>SS.checked[x]).length,total
   document.getElementById("s-status").textContent=extra?`${extra} as-needed also taken today`:"Tap items as you take them"; }
 document.getElementById("s-reset").onclick=()=>{ if(SS.lastFull===today()){SS.fullDays=Math.max(0,(SS.fullDays||0)-1);SS.lastFull="";}SS.checked={};store.set(S_KEY,SS);sBuild();sRender(); };
 
+/* ===================== GOALS ===================== */
+const GOALS={ kcal:2000, p:140, c:225, f:60, fibre:35, steps:8000, weightTarget:75 };
+
+/* ===================== FOOD ===================== */
+const F_KEY="thijs-food-v1";
+let FL = store.get(F_KEY) || {}; // { 'YYYY-MM-DD': [ {name,meal,p,c,f,fib} ] }
+function fToday(){ return new Date().toISOString().slice(0,10); }
+function fSave(){ store.set(F_KEY, FL); }
+function kcalOf(x){ return x._total && x._kcal ? Math.round(x._kcal) : Math.round(x.p*4 + x.c*4 + x.f*9); }
+function foodTotals(){ const items=FL[fToday()]||[]; let t={p:0,c:0,f:0,fib:0,kcal:0};
+  items.forEach(x=>{ t.p+=x.p; t.c+=x.c; t.f+=x.f; t.fib+=(x.fib||0); t.kcal+=kcalOf(x); }); return t; }
+function macroBar(val,goal,type){ const pct=Math.min(100,Math.round(val/goal*100));
+  let cls=""; if(type==="cap"&&val>goal) cls="over"; else if((type==="hit")&&val>=goal) cls="hit"; else if(type==="kcal"&&val>goal) cls="over";
+  return `<div class="mbar"><i class="${cls}" style="width:${pct}%"></i></div>`; }
+function foodRender(){
+  const t=foodTotals();
+  const defs=[
+    {k:"kcal",lbl:"kcal",val:Math.round(t.kcal),goal:GOALS.kcal,type:"kcal",dp:0},
+    {k:"p",lbl:"Protein",val:t.p,goal:GOALS.p,type:"cap"},
+    {k:"c",lbl:"Carbs",val:t.c,goal:GOALS.c,type:"plain"},
+    {k:"f",lbl:"Fat",val:t.f,goal:GOALS.f,type:"plain"},
+    {k:"fib",lbl:"Fibre",val:t.fib,goal:GOALS.fibre,type:"hit"},
+  ];
+  document.getElementById("food-totals").innerHTML=defs.map(d=>`
+    <div class="macro"><div class="mv">${Math.round(d.val)}<small>/${d.goal}</small></div><div class="ml">${d.lbl}</div>${macroBar(d.val,d.goal,d.type)}</div>`).join("");
+  document.getElementById("food-date").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long"});
+  // list grouped by meal
+  const items=FL[fToday()]||[]; const meals=["Breakfast","Lunch","Snack","Dinner"];
+  const list=document.getElementById("food-list");
+  if(!items.length){ list.innerHTML=`<div class="csub" style="margin:0">Nothing logged yet today.</div>`; return; }
+  list.innerHTML=meals.map(m=>{
+    const mi=items.map((x,i)=>({x,i})).filter(o=>o.x.meal===m);
+    if(!mi.length) return "";
+    return `<div class="mealgrp"><h4>${m}</h4>`+mi.map(o=>`
+      <div class="fitem"><span class="fn">${o.x.name||"item"}</span><span class="fm">${kcalOf(o.x)} kcal · P${o.x.p} C${o.x.c} F${o.x.f}${o.x.fib?` · ${o.x.fib}fib`:""}</span><button class="fdel" data-i="${o.i}">×</button></div>`).join("")+`</div>`;
+  }).join("");
+  list.querySelectorAll(".fdel").forEach(b=>b.onclick=()=>{ const i=+b.dataset.i; FL[fToday()].splice(i,1); if(!FL[fToday()].length) delete FL[fToday()]; fSave(); foodRender(); });
+  favRender();
+}
+document.getElementById("f-add").onclick=()=>{
+  const name=document.getElementById("f-name").value.trim();
+  const p=parseFloat(document.getElementById("f-p").value)||0;
+  const c=parseFloat(document.getElementById("f-c").value)||0;
+  const f=parseFloat(document.getElementById("f-f").value)||0;
+  const fib=parseFloat(document.getElementById("f-fib").value)||0;
+  if(!name && !p && !c && !f){ document.getElementById("f-name").focus(); return; }
+  const meal=document.getElementById("f-meal").value;
+  if(!FL[fToday()]) FL[fToday()]=[];
+  FL[fToday()].push({name,meal,p,c,f,fib}); fSave();
+  if(document.getElementById("f-fav").checked && name){ addFav({name,p,c,f,fib}); }
+  ["f-name","f-p","f-c","f-f","f-fib"].forEach(id=>document.getElementById(id).value="");
+  document.getElementById("f-fav").checked=false;
+  foodRender();
+};
+
+/* favourites */
+const FAV_KEY="thijs-fav-v1";
+let FAV = store.get(FAV_KEY) || [];
+function favSave(){ store.set(FAV_KEY,FAV); }
+function addFav(item){ if(!FAV.some(x=>x.name.toLowerCase()===item.name.toLowerCase())){ FAV.push(item); favSave(); } }
+function favRender(){
+  const el=document.getElementById("fav-list");
+  if(!FAV.length){ el.innerHTML=`<div class="csub" style="margin:0">No favourites yet. Tick "save as favourite" when you add a food.</div>`; return; }
+  el.innerHTML=FAV.map((x,i)=>`<div class="fitem"><span class="fn">${x.name}</span><span class="fm">${Math.round(x.p*4+x.c*4+x.f*9)} kcal · P${x.p} C${x.c} F${x.f}</span><button class="addbtn" style="padding:6px 12px;font-size:12px" data-fav="${i}">+ Add</button><button class="fdel" data-favdel="${i}">×</button></div>`).join("");
+  el.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{ const x=FAV[+b.dataset.fav]; if(!FL[fToday()])FL[fToday()]=[]; FL[fToday()].push({name:x.name,meal:document.getElementById("f-meal").value,p:x.p,c:x.c,f:x.f,fib:x.fib||0}); fSave(); foodRender(); });
+  el.querySelectorAll("[data-favdel]").forEach(b=>b.onclick=()=>{ FAV.splice(+b.dataset.favdel,1); favSave(); favRender(); });
+}
+
+/* daily total shortcut: stored as a single synthetic item flagged _total */
+document.getElementById("dt-add").onclick=()=>{
+  const kcal=parseFloat(document.getElementById("dt-kcal").value)||0;
+  const p=parseFloat(document.getElementById("dt-p").value)||0;
+  const c=parseFloat(document.getElementById("dt-c").value)||0;
+  const f=parseFloat(document.getElementById("dt-f").value)||0;
+  const fib=parseFloat(document.getElementById("dt-fib").value)||0;
+  if(!kcal && !p && !c && !f){ document.getElementById("dt-kcal").focus(); return; }
+  // overwrite the day with one total entry; store kcal explicitly so it isn't recomputed
+  FL[fToday()]=[{name:"Daily total (entered)",meal:"Breakfast",p,c,f,fib,_kcal:kcal,_total:true}];
+  fSave();
+  ["dt-kcal","dt-p","dt-c","dt-f","dt-fib"].forEach(id=>document.getElementById(id).value="");
+  foodRender();
+};
+
+/* ===================== BODY ===================== */
+const WT_KEY="thijs-weight-v1", ST_KEY="thijs-steps-v1", PH_KEY="thijs-photo-v1";
+let WTL = store.get(WT_KEY) || []; // [{d, kg}]
+let STL = store.get(ST_KEY) || {}; // { 'date': steps }
+let PHL = store.get(PH_KEY) || []; // [{d}]
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+
+document.getElementById("wt-add").onclick=()=>{
+  const v=parseFloat(document.getElementById("wt-in").value); if(isNaN(v)) return;
+  WTL.unshift({d:new Date().toISOString(), kg:v}); WTL=WTL.slice(0,60); store.set(WT_KEY,WTL);
+  document.getElementById("wt-in").value=""; bodyRender();
+};
+document.getElementById("st-add").onclick=()=>{
+  const v=parseInt(document.getElementById("st-in").value); if(isNaN(v)) return;
+  STL[todayStr()]=v; store.set(ST_KEY,STL);
+  document.getElementById("st-in").value=""; bodyRender();
+};
+document.getElementById("ph-add").onclick=()=>{
+  PHL.unshift({d:new Date().toISOString()}); PHL=PHL.slice(0,30); store.set(PH_KEY,PHL); bodyRender();
+};
+/* measurements */
+const MS_KEY="thijs-measure-v1";
+let MSL = store.get(MS_KEY) || []; // [{d, waist, arm, hips}]
+document.getElementById("ms-add").onclick=()=>{
+  const waist=parseFloat(document.getElementById("ms-waist").value)||null;
+  const arm=parseFloat(document.getElementById("ms-arm").value)||null;
+  const hips=parseFloat(document.getElementById("ms-hips").value)||null;
+  if(waist===null&&arm===null&&hips===null){ document.getElementById("ms-waist").focus(); return; }
+  MSL.unshift({d:new Date().toISOString(),waist,arm,hips}); MSL=MSL.slice(0,40); store.set(MS_KEY,MSL);
+  ["ms-waist","ms-arm","ms-hips"].forEach(id=>document.getElementById(id).value="");
+  bodyRender();
+};
+function dS(iso){ try{return new Date(iso).toLocaleDateString(undefined,{day:"numeric",month:"short"});}catch(_){return"";} }
+function bodyRender(){
+  // GOALS overview
+  const t=foodTotals();
+  const latestW = WTL.length?WTL[0].kg:null;
+  const stepsToday = STL[todayStr()]||0;
+  const rows=[
+    {n:"Weight",target:`Target ~${GOALS.weightTarget} kg`,now: latestW? `${latestW}<small> kg</small>`:"—<small></small>"},
+    {n:"Calories",target:`Goal ${GOALS.kcal}`,now:`${Math.round(t.kcal)}<small> kcal</small>`},
+    {n:"Protein",target:`Goal ${GOALS.p} g`,now:`${Math.round(t.p)}<small> g</small>`},
+    {n:"Fibre",target:`Goal ${GOALS.fibre} g`,now:`${Math.round(t.fib)}<small> g</small>`},
+    {n:"Steps",target:`Goal ${GOALS.steps.toLocaleString()}`,now:`${stepsToday.toLocaleString()}<small></small>`},
+  ];
+  document.getElementById("goals-list").innerHTML=rows.map(r=>`
+    <div class="goalrow"><div class="gi"><div class="gname">${r.n}</div><div class="gtarget">${r.target}</div></div><div class="gnow">${r.now}</div></div>`).join("");
+  // weight
+  const wl=document.getElementById("wt-latest");
+  if(WTL.length){ let chg="";
+    if(WTL.length>1){ const d=(WTL[0].kg-WTL[1].kg); chg=` (${d>0?"+":""}${(+d.toFixed(1))} kg vs last)`; }
+    const start=WTL[WTL.length-1].kg; const toGo=(WTL[0].kg-GOALS.weightTarget).toFixed(1);
+    wl.innerHTML=`Latest: <b>${WTL[0].kg} kg</b>${chg}<br>${toGo>0?`<b>${toGo} kg</b> to your ~${GOALS.weightTarget} kg target`:`At or below target ✓`}<br>Recent: `+WTL.slice(0,5).map(x=>`${x.kg} <span style="opacity:.6">${dS(x.d)}</span>`).join("  ·  ");
+  } else wl.textContent="No weight logged yet.";
+  // steps
+  const pct=Math.min(100,Math.round(stepsToday/GOALS.steps*100));
+  const sb=document.getElementById("st-bar"); sb.style.width=pct+"%"; sb.className=stepsToday>=GOALS.steps?"hit":"";
+  const recent=Object.entries(STL).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,5).map(([d,v])=>`${v.toLocaleString()} <span style="opacity:.6">${dS(d)}</span>`).join("  ·  ");
+  document.getElementById("st-latest").innerHTML=`Today: <b>${stepsToday.toLocaleString()}</b> / ${GOALS.steps.toLocaleString()}${recent?`<br>Recent: `+recent:""}`;
+  // photo
+  const pl=document.getElementById("ph-latest");
+  if(PHL.length){ const last=new Date(PHL[0].d); const days=Math.floor((Date.now()-last)/86400000);
+    pl.innerHTML=`Last photo: <b>${dS(PHL[0].d)}</b> (${days===0?"today":days+" days ago"}). ${days>=14?"Time for a new one.":"Next one in "+(14-days)+" days."}`;
+  } else pl.textContent="No photo logged yet. Take your first as a baseline.";
+  // measurements
+  const ml=document.getElementById("ms-latest");
+  if(MSL.length){ const c=MSL[0], p=MSL[1];
+    const line=(lbl,now,prev)=>{ if(now==null) return ""; let ch=""; if(prev!=null){const d=+(now-prev).toFixed(1); ch=` (${d>0?"+":""}${d})`;} return `<b>${lbl} ${now} cm</b>${ch}`; };
+    const parts=[line("Waist",c.waist,p&&p.waist),line("Arm",c.arm,p&&p.arm),line("Hips",c.hips,p&&p.hips)].filter(Boolean);
+    ml.innerHTML=`Latest (${dS(c.d)}):<br>`+parts.join("  ·  ");
+  } else ml.textContent="No measurements yet. Log waist, arm and hips to start the trend.";
+}
+
+/* ===================== TODAY ===================== */
+const MR_KEY="thijs-morning-v1";
+const WI_KEY="thijs-weighin-v1";
+const MORNING=[
+  {id:"wake",n:"6:00 AM wake up",s:"Consistent wake time anchors your circadian rhythm and sleep quality."},
+  {id:"water",n:"Water + electrolytes",s:"On waking. Rehydrate and help uric acid clearance."},
+  {id:"chin_tucks",n:"Chin tucks × 10",s:"FORWARD HEAD. Pull chin straight back, make a double chin, hold 2s. The key fix."},
+  {id:"chest_stretch",n:"Doorway chest stretch 30s",s:"FORWARD HEAD. Opens the tight chest from desk posture."},
+  {id:"wall_angels",n:"Wall angels × 12",s:"FORWARD HEAD. Back flat to wall, slide arms up and down. Activates upper back."},
+  {id:"hipflexor",n:"Hip flexor stretch 40s/side",s:"PELVIC TILT. Half-kneeling or couch stretch. Loosens the tight front of the hip."},
+  {id:"glute_bridge",n:"Glute bridges × 15",s:"PELVIC TILT. Squeeze glutes hard at the top. Activates what's switched off."},
+  {id:"dead_bug",n:"Dead bug × 8/side",s:"PELVIC TILT. Slow, low back pressed to floor. Wakes up the deep core."},
+];
+let MR = store.get(MR_KEY) || {day:"",checked:{}};
+function mrToday(){ return new Date().toISOString().slice(0,10); }
+function mrInit(){ if(MR.day!==mrToday()){ MR.day=mrToday(); MR.checked={}; store.set(MR_KEY,MR); } }
+function todayRender(){
+  mrInit();
+  document.getElementById("today-date").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long"});
+  const t=foodTotals(), latestW=WTL.length?WTL[0].kg:null, stepsToday=STL[todayStr()]||0;
+  const doneReq=REQUIRED.filter(x=>SS.checked[x]).length;
+  const mrDone=MORNING.filter(m=>MR.checked[m.id]).length;
+  document.getElementById("today-sub").textContent=`Morning routine ${mrDone}/${MORNING.length} · Protein ${Math.round(t.p)}/${GOALS.p}g · Steps ${stepsToday.toLocaleString()}/${GOALS.steps.toLocaleString()} · Supps ${doneReq}/${REQUIRED.length}`;
+  const root=document.getElementById("today-cards");
+  // morning routine card
+  let mrHTML=`<div class="card"><h3>Morning routine</h3><div class="csub">Daily. Posture drills target your forward-head and pelvic-tilt patterns. Resets each morning.</div><div id="mr-list">`+
+    MORNING.map(m=>{const d=!!MR.checked[m.id];return `<div class="sup${d?' done':''}" data-mr="${m.id}"><span class="check"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M3 8 6 11 12 4" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="sbody"><div class="sname" style="font-size:15.5px">${m.n}</div><div class="why">${m.s}</div></div></div>`;}).join("")+`</div></div>`;
+  // snapshot card
+  const snap=[
+    {n:"Weight",v: latestW? `${latestW} kg`:"—", sub: latestW?`toward ${GOALS.weightTarget} kg`:"log in Body"},
+    {n:"Steps",v: stepsToday.toLocaleString(), sub:`goal ${GOALS.steps.toLocaleString()}`},
+    {n:"Calories",v: `${Math.round(t.kcal)}`, sub:`goal ${GOALS.kcal}`},
+    {n:"Protein",v: `${Math.round(t.p)} g`, sub:`cap ${GOALS.p} g`},
+    {n:"Fibre",v: `${Math.round(t.fib)} g`, sub:`goal ${GOALS.fibre} g`},
+    {n:"Supplements",v: `${doneReq}/${REQUIRED.length}`, sub: doneReq===REQUIRED.length?"complete ✓":"tap Supps"},
+  ];
+  let snapHTML=`<div class="card"><h3>Today at a glance</h3><div style="margin-top:8px">`+
+    snap.map(s=>`<div class="goalrow"><div class="gi"><div class="gname">${s.n}</div><div class="gtarget">${s.sub}</div></div><div class="gnow" style="font-size:18px">${s.v}</div></div>`).join("")+`</div></div>`;
+  // weigh-in card: done if a weight was logged today, or manually marked
+  const weighedToday = WTL.length && WTL[0].d.slice(0,10)===todayStr();
+  const manualDone = !!(store.get(WI_KEY)||{})[todayStr()];
+  const wiDone = weighedToday || manualDone;
+  const wiTxt = weighedToday ? `Logged ${WTL[0].kg} kg today ✓` : (manualDone ? "Marked done ✓" : "Not done yet");
+  let wiHTML=`<div class="card"><h3>Weigh-in</h3><div class="csub">Morning, same time, before food. Logging your weight in the Body tab ticks this automatically.</div>
+    <div class="sup${wiDone?' done':''}" id="wi-row"><span class="check"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M3 8 6 11 12 4" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="sbody"><div class="sname" style="font-size:15.5px">Weigh-in done</div><div class="why" id="wi-txt">${wiTxt}</div></div></div></div>`;
+  root.innerHTML=mrHTML+wiHTML+snapHTML;
+  document.querySelectorAll("#mr-list [data-mr]").forEach(el=>el.onclick=()=>{ const id=el.dataset.mr; MR.checked[id]=!MR.checked[id]; store.set(MR_KEY,MR); todayRender(); });
+  document.getElementById("wi-row").onclick=()=>{
+    if(weighedToday) return; // already logged via Body tab
+    const wi=store.get(WI_KEY)||{}; wi[todayStr()]=!wi[todayStr()]; store.set(WI_KEY,wi); todayRender();
+  };
+}
+
+/* ===================== TRENDS ===================== */
+function lineChart(points, opts={}){
+  // points: [{d, v}] newest-first; draw oldest->newest left->right
+  if(!points || points.length<1) return `<div class="empty-note">Not enough data yet.</div>`;
+  const pts=[...points].reverse();
+  const vals=pts.map(p=>p.v);
+  let min=Math.min(...vals), max=Math.max(...vals);
+  if(opts.goal!=null){ min=Math.min(min,opts.goal); max=Math.max(max,opts.goal); }
+  if(min===max){ min-=1; max+=1; }
+  const pad=(max-min)*0.15||1; min-=pad; max+=pad;
+  const W=320,H=120,L=8,R=8,T=10,B=18, iw=W-L-R, ih=H-T-B;
+  const x=i=>L+(pts.length===1?iw/2:iw*i/(pts.length-1));
+  const y=v=>T+ih*(1-(v-min)/(max-min));
+  let svg=`<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;
+  if(opts.goal!=null){ svg+=`<line class="goal" x1="${L}" y1="${y(opts.goal)}" x2="${W-R}" y2="${y(opts.goal)}"/>`; }
+  const poly=pts.map((p,i)=>`${x(i)},${y(p.v)}`).join(" ");
+  svg+=`<polyline points="${poly}"/>`;
+  pts.forEach((p,i)=>{ svg+=`<circle cx="${x(i)}" cy="${y(p.v)}" r="3"/>`; });
+  // first + last labels
+  svg+=`<text x="${L}" y="${H-4}">${dS(pts[0].d)}</text><text x="${W-R}" y="${H-4}" text-anchor="end">${dS(pts[pts.length-1].d)}</text>`;
+  svg+=`</svg>`;
+  const first=vals[0], last=vals[vals.length-1], chg=+(last-first).toFixed(1);
+  const chgTxt = pts.length>1 ? `<div class="recent">Now <b>${last}${opts.unit||""}</b> · ${chg>0?"+":""}${chg}${opts.unit||""} since ${dS(pts[0].d)}${opts.goal!=null?` · goal ${opts.goal}${opts.unit||""}`:""}</div>` : `<div class="recent">First point logged: <b>${last}${opts.unit||""}</b></div>`;
+  return svg+chgTxt;
+}
+function barChart(days, goal, fmt){
+  // days: [{label, v}] oldest->newest
+  if(!days.length) return `<div class="empty-note">Not enough data yet.</div>`;
+  const max=Math.max(goal||0, ...days.map(d=>d.v))||1;
+  let html=`<div class="tbars">`;
+  days.forEach(d=>{ const h=Math.round(d.v/max*100); const cls=goal&&d.v>=goal?"hit":(d.v>0?"":"miss");
+    html+=`<div class="tbar"><i class="${cls}" style="height:${h}%"></i><span>${d.label}</span></div>`; });
+  html+=`</div>`;
+  return html;
+}
+function last14Dates(){ const out=[]; for(let i=13;i>=0;i--){ const dt=new Date(); dt.setDate(dt.getDate()-i); out.push(dt.toISOString().slice(0,10)); } return out; }
+function proteinOnDate(ds){ const items=FL[ds]||[]; return items.reduce((a,x)=>a+(x.p||0),0); }
+function trendsRender(){
+  // weight
+  document.getElementById("tr-weight").innerHTML = lineChart(WTL.map(w=>({d:w.d,v:w.kg})), {goal:GOALS.weightTarget, unit:" kg"});
+  // waist
+  const waistPts=MSL.filter(m=>m.waist!=null).map(m=>({d:m.d,v:m.waist}));
+  document.getElementById("tr-waist").innerHTML = lineChart(waistPts, {unit:" cm"});
+  // protein hit-rate (last 14 logged days that have any food)
+  const dates=last14Dates();
+  const pDays=dates.filter(ds=>FL[ds]).map(ds=>({label:ds.slice(8),v:Math.round(proteinOnDate(ds))}));
+  document.getElementById("tr-protein").innerHTML = barChart(pDays, 130) + (pDays.length?`<div class="recent">${pDays.filter(d=>d.v>=130).length}/${pDays.length} logged days hit ≥130g protein</div>`:"");
+  // steps
+  const sDays=dates.filter(ds=>STL[ds]!=null).map(ds=>({label:ds.slice(8),v:STL[ds]}));
+  document.getElementById("tr-steps").innerHTML = barChart(sDays, GOALS.steps) + (sDays.length?`<div class="recent">${sDays.filter(d=>d.v>=GOALS.steps).length}/${sDays.length} logged days hit ${GOALS.steps.toLocaleString()} steps</div>`:"");
+}
+
 /* ===================== INIT ===================== */
 wTabs(); wDays(); wStatus();
 sInit(); sBuild(); sRender();
-showView(store.get("thijs-last-view")||"workout");
+favRender();
+showView(store.get("thijs-last-view")||"today");
 </script>
 </body>
 </html>
