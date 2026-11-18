@@ -168,8 +168,8 @@ ul.plain li b{font-weight:700}
         <ul class="plain">
           <li><b>Stop 2 reps short</b> of failure on every set (RIR 2). Week 0 to 2: 3 reps short.</li>
           <li><b>Hit the top of the rep range on all sets?</b> Next time add 2.5 kg upper, 5 kg lower.</li>
-          <li><b>Pull-ups:</b> negatives or assisted until 6 strict. Never to failure until the week 12 test.</li>
-          <li><b>◆ marks width work</b> (side delts, lats). That's what builds the model frame.</li>
+          <li><b>Machines vary.</b> "Start at" is a first guess. Session 1: find the weight where you have 2 reps left, then log it.</li><li><b>Pull-ups:</b> on the assisted machine, less assist each week. Target 6 strict by February.</li>
+          <li><b>◆ marks width work</b> (side delts, rear delts, lats). Shoulders get hit 3× a week, arms 3× a week.</li>
           <li><b>Rest:</b> 90 to 120 s on big lifts, 60 s on raises and arms.</li>
         </ul>
       </div>
@@ -379,33 +379,39 @@ function weekNo(){ const ms = new Date(NOW.getFullYear(),NOW.getMonth(),NOW.getD
 /* ================= PLAN DATA ================= */
 const SCHED = {1:"A",2:"RUN",3:"B",4:"RUN",5:"C",6:"BARRYS",0:"REST"};
 const SESS = {
-  A:{name:"Strength A · Upper width", time:"60 min", tag:"lift", sub:"Lats and side delts build the frame. Incline press for upper chest.", ex:[
-    {id:"pullup_a",n:"Pull-up (negatives / assisted until 6 strict)",rx:"4 × 3–5",sets:4,cue:"Full hang to chin over bar. 5 s lowering on negatives.",focus:1,bw:1},
-    {id:"lat_pd",n:"Lat pulldown, wide",rx:"3 × 8–10",sets:3,cue:"Lead with elbows, squeeze shoulder blades down.",focus:1},
-    {id:"inc_db",n:"Incline dumbbell press, 30°",rx:"3 × 8–10",sets:3,cue:"Full stretch at the bottom. Upper chest."},
-    {id:"cable_lat",n:"Cable lateral raise",rx:"4 × 12–15",sets:4,cue:"Cable behind the body, lead with the elbow, stop at shoulder height.",focus:1},
-    {id:"face_pull",n:"Face pull",rx:"3 × 15",sets:3,cue:"Rope to forehead, elbows high. Posture."},
-    {id:"hang_knee",n:"Hanging knee raise, slow",rx:"3 × 10",sets:3,cue:"Tilt pelvis up at the top. No swing.",bw:1}
+  A:{name:"Push · Chest, shoulders, triceps", time:"60 min", tag:"lift", sub:"Upper chest and shoulder caps. All machines and cables.", ex:[
+    {id:"inc_machine",n:"Incline chest press machine",rx:"3 × 8–10",sets:3,sug:"30–40 kg",cue:"Seat so handles line up with upper chest. 2 s down."},
+    {id:"m_ohp",n:"Shoulder press machine",rx:"3 × 8–10",sets:3,sug:"25–35 kg",cue:"Ribs down, don't arch. Stop just short of lockout."},
+    {id:"cable_lat",n:"Cable lateral raise",rx:"4 × 12–15",sets:4,sug:"5–7.5 kg",cue:"Cable behind the body, lead with the elbow, stop at shoulder height.",focus:1},
+    {id:"pec_deck",n:"Pec deck fly",rx:"3 × 12",sets:3,sug:"35–45 kg",cue:"Soft elbows, squeeze 1 s at the middle."},
+    {id:"rear_delt",n:"Rear delt pec deck",rx:"3 × 15",sets:3,sug:"18–25 kg",cue:"Lead with the pinkies. Rounded shoulders fix.",focus:1},
+    {id:"rope_push",n:"Rope triceps pushdown",rx:"3 × 12",sets:3,sug:"20–25 kg",cue:"Elbows pinned, split the rope at the bottom."},
+    {id:"oh_tri",n:"Overhead cable triceps extension",rx:"2 × 12",sets:2,sug:"15–20 kg",cue:"Long head, the part that makes arms look big from the side."},
+    {id:"cable_crunch",n:"Cable crunch, heavy",rx:"3 × 12",sets:3,sug:"35–45 kg",cue:"Curl ribs to hips. Abs need load to show."}
   ]},
-  B:{name:"Strength B · Full body", time:"60 min", tag:"lift", sub:"Posterior chain for posture, legs on maintenance, more width work.", ex:[
-    {id:"rdl",n:"Romanian deadlift",rx:"3 × 6–8",sets:3,cue:"Hips back, soft knees, bar close. Fixes the 55% posterior chain score."},
-    {id:"inc_bb",n:"Incline barbell or Smith press",rx:"3 × 6–8",sets:3,cue:"Touch upper chest, ribs down."},
-    {id:"cs_row",n:"Chest-supported row",rx:"3 × 10",sets:3,cue:"1 s squeeze at the top. No lower back cheat.",focus:1},
-    {id:"db_lat",n:"Dumbbell lateral raise",rx:"4 × 15",sets:4,cue:"Light and strict. Pinkies slightly up.",focus:1},
-    {id:"bss",n:"Bulgarian split squat",rx:"2 × 10 / side",sets:2,cue:"Maintenance only. Smooth, not heavy."},
-    {id:"cable_crunch",n:"Cable crunch, heavy",rx:"3 × 12",sets:3,cue:"Curl ribs to hips. Abs need load to show."}
+  B:{name:"Pull · Back width, biceps", time:"60 min", tag:"lift", sub:"The V-taper day. Lats make the waist look smaller.", ex:[
+    {id:"lat_pd",n:"Lat pulldown, wide",rx:"4 × 8–10",sets:4,sug:"45–50 kg",cue:"Lead with elbows, squeeze shoulder blades down.",focus:1},
+    {id:"assist_pu",n:"Assisted pull-up machine",rx:"3 × 6–8",sets:3,sug:"−30 kg assist",cue:"Log the assist weight. Less assist = progress. Target: 6 strict by Feb.",focus:1},
+    {id:"cs_row",n:"Chest-supported row machine",rx:"3 × 10",sets:3,sug:"15–20 kg / side",cue:"Chest on the pad, 1 s squeeze. Top posture builder.",focus:1},
+    {id:"cable_row",n:"Seated cable row, close grip",rx:"3 × 10–12",sets:3,sug:"45–50 kg",cue:"Pull to navel, ribs down."},
+    {id:"face_pull",n:"Face pull",rx:"3 × 15",sets:3,sug:"12–18 kg",cue:"Rope to forehead, elbows high."},
+    {id:"cable_curl",n:"Cable or EZ-bar curl",rx:"3 × 10–12",sets:3,sug:"15–20 kg",cue:"Elbows still, no swing. 2 s down."},
+    {id:"ham_curl",n:"Hammer curl, dumbbells",rx:"3 × 12",sets:3,sug:"10–12.5 kg",cue:"Per hand. Thickens the arm."},
+    {id:"hang_raise",n:"Hanging leg raise",rx:"3 × 12",sets:3,sug:"bodyweight",cue:"Slow, tilt pelvis up at the top. Lower abs.",bw:1}
   ]},
-  C:{name:"Strength C · Shoulders + arms", time:"60 min", tag:"lift", sub:"Shoulder caps, upper chest, arms. Pull-up practice volume.", ex:[
-    {id:"pullup_c",n:"Pull-up density",rx:"8 × 2–3",sets:8,cue:"60 s rest. Quality reps only.",focus:1,bw:1},
-    {id:"db_ohp",n:"Seated dumbbell shoulder press",rx:"3 × 8–10",sets:3,cue:"Ribs down, don't arch."},
-    {id:"sa_row",n:"Single-arm cable row",rx:"3 × 12 / side",sets:3,cue:"Reach long, pull to hip.",focus:1},
-    {id:"lth_fly",n:"Low-to-high cable fly",rx:"3 × 12",sets:3,cue:"Hands finish at chin height. Upper chest."},
-    {id:"lat_drop",n:"Lateral raise drop set",rx:"2 rounds",sets:2,cue:"12 reps, drop 30%, 10 more, drop again, to 2 shy of failure.",focus:1},
-    {id:"curl_push",n:"Incline curl + rope pushdown superset",rx:"3 × 10–12",sets:3,cue:"Log the curl weight. Pushdown straight after."},
-    {id:"ab_wheel",n:"Ab wheel from knees",rx:"3 × 10",sets:3,cue:"Stop before the low back arches.",bw:1}
+  C:{name:"Shoulders + arms · and 2 posture moves", time:"60 min", tag:"lift", sub:"The aesthetic day. Side delts, arms, upper chest. Two lower moves for posture, 10 minutes.", ex:[
+    {id:"m_lat",n:"Lateral raise machine",rx:"4 × 12–15",sets:4,sug:"20–30 kg",cue:"Pads on the elbows, raise to shoulder height. The shoulder-width lift.",focus:1},
+    {id:"inc_smith",n:"Incline Smith press",rx:"3 × 8–10",sets:3,sug:"20–30 kg + bar",cue:"Bar to upper chest, 30° bench."},
+    {id:"sa_pd",n:"Single-arm cable pulldown",rx:"3 × 12 / side",sets:3,sug:"15–20 kg",cue:"Pull elbow to hip, feel the lat stretch at the top.",focus:1},
+    {id:"rd_cable",n:"Rear delt cable fly",rx:"3 × 15",sets:3,sug:"5–7.5 kg",cue:"Cross cables, arms wide, squeeze back.",focus:1},
+    {id:"preacher",n:"Preacher curl machine",rx:"3 × 10–12",sets:3,sug:"20–25 kg",cue:"Full stretch at the bottom, no bouncing."},
+    {id:"dip_m",n:"Triceps dip machine",rx:"3 × 10",sets:3,sug:"40–50 kg",cue:"Elbows back, chest up."},
+    {id:"hip_thrust",n:"Hip thrust machine or 45° back extension",rx:"3 × 12",sets:3,sug:"60–80 kg / BW",cue:"Posture, not leg size. Pulls the pelvis back, flattens the lower belly."},
+    {id:"leg_curl",n:"Seated leg curl",rx:"2 × 12",sets:2,sug:"35–45 kg",cue:"Hamstrings. Your posterior chain scored 55%."},
+    {id:"ab_wheel",n:"Ab wheel or decline crunch",rx:"3 × 10",sets:3,sug:"bodyweight",cue:"Stop before the low back arches.",bw:1}
   ]},
   RUN:{name:"Easy run · Zone 2", time:"45 min", tag:"run", sub:"125 to 140 bpm. Full sentences possible. Run-walk in the heat is fine.", run:1},
-  BARRYS:{name:"Barry's", time:"50 min", tag:"barrys", sub:"Replaces the long run. This is your interval session. Floor block moderate, it's the day after Strength C.", run:1, barrys:1},
+  BARRYS:{name:"Barry's", time:"50 min", tag:"barrys", sub:"Replaces the long run. This is your interval session. Floor block moderate, it's the day after Shoulders + arms.", run:1, barrys:1},
   REST:{name:"Rest + reset", time:"", tag:"rest", sub:"45 min walk, Sunday check-in, batch cook.", rest:1}
 };
 
@@ -465,7 +471,7 @@ function renderToday(){
     3:"<b>Eat-out night:</b> decide the 2,450 ceiling before you sit down.",
     4:"<b>Always easy today.</b> Barry's on Saturday is your hard session.",
     5:"<b>Eat-out night:</b> protein first, one drink, walk after. Barry's tomorrow.",
-    6:"<b>Barry's:</b> count ~500 kcal, don't eat it back. Floor block moderate."
+    6:"<b>Barry's:</b> count ~500 kcal, don't eat it back. Arms were trained yesterday: floor block moderate."
   };
   document.getElementById("tRule").innerHTML = rules[DOW];
 }
@@ -489,9 +495,9 @@ function sessionHTML(key, compact){
   return s.ex.map(e=>{
     const t = topSet(lastOf(e.id));
     const last = t ? `Last top set: ${e.bw && !t[0] ? "BW" : t[0]+" kg"} × ${t[1]}. Beat it.` : "";
-    const rows = Array.from({length:e.sets},(_,i)=>`<span>${i+1}</span><input type="number" inputmode="decimal" placeholder="${e.bw?"+kg (0 = BW)":"kg"}" data-ex="${e.id}" data-i="${i}" data-k="w"><input type="number" inputmode="numeric" placeholder="reps" data-ex="${e.id}" data-i="${i}" data-k="r">`).join("");
+    const rows = Array.from({length:e.sets},(_,i)=>`<span>${i+1}</span><input type="number" inputmode="decimal" placeholder="${e.bw?"+kg (0 = BW)":e.id==="assist_pu"?"assist kg":"kg"}" data-ex="${e.id}" data-i="${i}" data-k="w"><input type="number" inputmode="numeric" placeholder="reps" data-ex="${e.id}" data-i="${i}" data-k="r">`).join("");
     return `<div class="ex${e.focus?" focus":""}">
-      <div class="top"><span class="nm">${e.n}</span><span class="rx">${e.rx}</span></div>
+      <div class="top"><span class="nm">${e.n}</span><span class="rx">${e.rx}</span></div>${e.sug?`<div class="cue"><b>Start at:</b> ${e.sug}</div>`:""}
       <div class="cue">${e.cue}</div>
       ${last?`<div class="last">${last}</div>`:""}
       <div class="sets">${rows}</div>
@@ -539,7 +545,7 @@ function bindSession(key){
 let trDay = DOW;
 function renderTrain(){
   const order=[1,2,3,4,5,6,0], short=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-  const lbl={A:"Lift A",B:"Lift B",C:"Lift C",RUN:"Run",BARRYS:"Barry's",REST:"Rest"};
+  const lbl={A:"Push",B:"Pull",C:"Arms",RUN:"Run",BARRYS:"Barry's",REST:"Rest"};
   const strip=document.getElementById("strip"); strip.innerHTML="";
   order.forEach(d=>{
     const b=document.createElement("button");
@@ -635,7 +641,7 @@ function renderPhotos(){
 /* ================= PLAN ================= */
 function renderPlan(){
   const P=[
-    ["Week 0","9–15 Nov","Measure weight, waist, pull-ups. Lift A + C easy, 2 easy runs, Barry's optional.",0],
+    ["Week 0","9–15 Nov","Measure weight, waist, pull-ups. Push + Pull easy, 2 easy runs, Barry's optional.",0],
     ["Weeks 1–4","16 Nov–13 Dec","Full week. 3 reps short → 2 reps short. Photo 6 Dec.",1],
     ["Weeks 5–8","14 Dec–10 Jan","Holiday hold: maintain weight, keep 3 lifts. Week 7 deload: 40% fewer sets, skip Barry's. Photo 3 Jan.",5],
     ["Weeks 9–12","11 Jan–7 Feb","Push. Deficit back on. Pull-up test. Photo 31 Jan. Omni retest.",9]
